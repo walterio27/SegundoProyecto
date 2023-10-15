@@ -4,7 +4,7 @@ Un juego de naves hecho en Godot
 # Meteoritos
 
 ***
-Meteoritos es un juego del tipo shmup 2D pra PC donde debemos controlar
+Meteoritos es un juego del tipo shmup 2D para PC donde debemos controlar
 la nave comandada por N-Pilot para escapar de los enemigos y llegar
 hasta los rele de masa que nos conducen a otras galaxias. Ten cuidado
 con la lluvia de meteoritos, las naves enemigas que custodian las bases,
