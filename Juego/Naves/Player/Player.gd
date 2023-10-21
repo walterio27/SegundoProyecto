@@ -10,6 +10,9 @@ export var potencia_rotacion:int = 280
 var empuje:Vector2 = Vector2.ZERO
 var dir_rotacion:int = 0
 
+## Atributos OnReady
+onready var Canion:Canion = $Canion
+
 ## Metodos
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	#Los prints son solo para entender mejor que esta pasando. BORRAR
@@ -35,6 +38,16 @@ func player_input() -> void:
 		dir_rotacion -= 1
 	elif Input.is_action_pressed("rotar_horario"):
 		dir_rotacion += 1
+	
+	# Disparo
+	if Input.is_action_pressed("disparo_principal"):
+		Canion.set_esta_disparando(true)
+		
+	if Input.is_action_just_released("disparo_principal"):
+		Canion.set_esta_disparando(false)
+			
+
+	
 			
 		
 	
