@@ -11,5 +11,5 @@ dest_files=[ "res://.import/SonidoLaser.ogg-7e2e22ba28f2b702aa4f1420bdbbff55.ogg
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
