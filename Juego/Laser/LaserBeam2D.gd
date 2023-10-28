@@ -17,7 +17,7 @@ export var growth_time := 0.1
 # It plays appearing and disappearing animations when it's not animating.
 # See `appear()` and `disappear()` for more information.
 var is_casting := false setget set_is_casting
-var radio_danio
+
 
 
 onready var fill := $FillLine2D
@@ -61,7 +61,7 @@ func set_is_casting(cast: bool) -> void:
 # collision point, whichever is closest.
 func cast_beam(delta:float) -> void:
 	var cast_point := cast_to
-	
+	var radio_danio := 4
 	force_raycast_update()
 	collision_particles.emitting = is_colliding()
 
