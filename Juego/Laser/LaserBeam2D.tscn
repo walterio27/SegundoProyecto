@@ -27,7 +27,6 @@ modulate = Color( 1.5, 1.5, 1.5, 1 )
 show_behind_parent = true
 lifetime = 0.3
 local_coords = false
-texture = ExtResource( 2 )
 
 [node name="BeamParticles2D" type="CPUParticles2D" parent="."]
 modulate = Color( 1.5, 1.5, 1.5, 1 )
