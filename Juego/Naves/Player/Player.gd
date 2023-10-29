@@ -9,6 +9,7 @@ enum ESTADO {SPAWN, VIVO, INVENCIBLE, MUERTO}
 export var potencia_motor:int = 20
 export var potencia_rotacion:int = 280
 export var estela_maxima:int = 150
+export var hitpoints:float = 15.0
 
 ## Atributos
 var empuje:Vector2 = Vector2.ZERO
@@ -21,12 +22,12 @@ onready var laser:RayoLaser = $LaserBeam2D
 onready var estela:Estela = $EstelaPuntoInicio/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
 onready var colisionador:CollisionShape2D = $CollisionShape2D
+onready var impacto_sfx:AudioStreamPlayer = $ImpactoSFX
+onready var escudo:Escudo = $Escudo
 
 ## Metodos
 func _ready() -> void:
 	controlador_estados(estado_actual)
-	
-	
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if not esta_input_activo():
@@ -49,16 +50,27 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_released("mover_adelante")
 		or event.is_action_released("mover_atras")):
 			motor_sfx.sonido_off()
-	
+			
+	#Control Escudo
+	if event.is_action_pressed("escudo") and not escudo.get_esta_activado():
+		escudo.activar()
+		
 
-func _integrate_forces(state: Physics2DDirectBodyState) -> void:
+func recibir_danio(danio: float) -> void:
+	hitpoints -= danio
+	if hitpoints <= 0.0:
+		destruir()
+	
+	impacto_sfx.play()	
+
+func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
 	#Los prints son solo para entender mejor que esta pasando. BORRAR
 	print(rad2deg(rotation))
 	print(empuje.rotated(rotation))
 	apply_central_impulse(empuje.rotated(rotation))
 	apply_torque_impulse(dir_rotacion * potencia_rotacion)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	player_input()
 	
 ## Metodos Custom
@@ -84,6 +96,7 @@ func controlador_estados(nuevo_estado:int) -> void:
 func esta_input_activo() -> bool:
 	if estado_actual in [ESTADO.MUERTO, ESTADO.SPAWN]:
 		return false
+		
 	return true
 	
 			

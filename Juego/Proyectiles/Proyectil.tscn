@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Juego/Proyectiles/proyectil_player.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Proyectiles/Proyectil.gd" type="Script" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
 
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 7.02095
+height = 33.3389
+
 [node name="Proyectil" type="Area2D"]
 z_as_relative = false
-collision_layer = 0
-collision_mask = 0
+collision_layer = 8
+collision_mask = 6
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -19,6 +23,7 @@ texture = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.297302, 0 )
 rotation = 1.5708
+shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 0.382609, -0.132433 )
@@ -26,4 +31,6 @@ scale = Vector2( 2.03445, 0.284863 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
