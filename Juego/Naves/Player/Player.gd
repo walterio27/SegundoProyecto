@@ -29,6 +29,10 @@ onready var escudo:Escudo = $Escudo
 func _ready() -> void:
 	controlador_estados(estado_actual)
 	
+<<<<<<< Updated upstream
+=======
+	
+>>>>>>> Stashed changes
 func _unhandled_input(event: InputEvent) -> void:
 	if not esta_input_activo():
 		return
