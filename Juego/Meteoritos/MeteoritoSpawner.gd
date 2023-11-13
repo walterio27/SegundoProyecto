@@ -15,12 +15,7 @@ func _ready() -> void:
 	spawnear_meteorito()
 	
 func spawnear_meteorito() -> void:
-	Eventos.emit_signal(
-		"spawn_meteorito",
-		global_position, 
-		direccion,
-		tamanio_meteorito_aleatorio()
-		)
+	Eventos.emit_signal("spawn_meteorito", global_position, direccion, tamanio_meteorito_aleatorio())
 
 func tamanio_meteorito_aleatorio() -> float:
 	randomize()
@@ -28,7 +23,3 @@ func tamanio_meteorito_aleatorio() -> float:
 		
 	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass

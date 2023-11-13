@@ -29,10 +29,7 @@ onready var escudo:Escudo = $Escudo
 func _ready() -> void:
 	controlador_estados(estado_actual)
 	
-<<<<<<< Updated upstream
-=======
-	
->>>>>>> Stashed changes
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not esta_input_activo():
 		return
@@ -135,4 +132,11 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 func destruir() -> void:
 	controlador_estados(ESTADO.MUERTO)
 	
+		
+
+
+func _on_body_entered(body: Node) -> void:
+	if body is Meteorito:
+		body.destruir()
+		destruir()
 		
